@@ -1,8 +1,8 @@
 "use client";
 
+import { inter } from "@/interFont";
 import axios from "axios";
 import { useState } from "react";
-import { inter } from "./page";
 import { CgSpinnerTwo } from "react-icons/cg";
 
 export const MainContent = () => {
