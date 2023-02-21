@@ -26,19 +26,18 @@ export default async function handler(
 
   const tweets = data.map((d: Twitter.ResponseData) => d.text);
 
-  console.log({ tweets });
-
   const payload = {
     model: "text-davinci-003",
     temperature: 0.7,
-    max_tokens: 250,
+    max_tokens: 500,
     top_p: 1,
     frequency_penalty: 0.5,
     presence_penalty: 0,
-    prompt: `please create a new tweet from the list of the tweets. Please do not use any hashtags.
+    prompt: `Please create a list of new tweets from the list of the tweets below. The number of the new tweets must be 2. Please return it as an array. Please do not use any hashtags.
     The list of the tweets in style of a json data format: ${JSON.stringify(
       tweets
-    )}`,
+    )}
+    The new tweets array:`,
   };
 
   const json = await fetch("https://api.openai.com/v1/completions", {

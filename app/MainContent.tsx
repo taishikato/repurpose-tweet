@@ -6,15 +6,15 @@ import { inter } from "./page";
 import { CgSpinnerTwo } from "react-icons/cg";
 
 export const MainContent = () => {
-  const [newTweet, setNewTweet] = useState("");
+  const [newTweet, setNewTweet] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchTweets = async () => {
-    setNewTweet("");
+    setNewTweet([]);
     setLoading(true);
     try {
       const { data } = await axios.get("/api/hello");
-      setNewTweet(data.tweet);
+      setNewTweet(JSON.parse(data.tweet));
     } catch (err) {
       console.error({ err });
     } finally {
@@ -26,6 +26,7 @@ export const MainContent = () => {
     <>
       <div className="w-full flex justify-center mb-14">
         <button
+          disabled={loading}
           onClick={fetchTweets}
           className={`px-8 py-4 rounded-full bg-sky-500 text-white font-bold transition-colors hover:bg-sky-600 ${inter.className}`}
         >
@@ -36,7 +37,13 @@ export const MainContent = () => {
           )}
         </button>
       </div>
-      <div className="text-lg">{newTweet}</div>
+      {newTweet.map((t) => {
+        return (
+          <div className="text-lg p-3 border rounded-xl mb-6" key={t}>
+            {t}
+          </div>
+        );
+      })}
     </>
   );
 };
