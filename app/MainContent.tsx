@@ -5,37 +5,65 @@ import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { TweetContainer } from "./TweetContainer";
 
+const bigAccounts = [
+  {
+    name: "Elon Musk",
+    image:
+      "https://hndfjivgskjpoyxfgmyu.supabase.co/storage/v1/object/public/public/elon-musk",
+    account: "elonmusk",
+  },
+  {
+    name: "Paul Graham",
+    image:
+      "https://hndfjivgskjpoyxfgmyu.supabase.co/storage/v1/object/public/public/pg",
+    account: "paulg",
+  },
+  {
+    name: "Melinda French Gates",
+    image:
+      "https://hndfjivgskjpoyxfgmyu.supabase.co/storage/v1/object/public/public/mg",
+    account: "melindagates",
+  },
+];
+
 export const MainContent = () => {
   const [newTweet, setNewTweet] = useState([
     "I'm finding that more and more people are taking advantage of subscription plans offered by big tech companies. What do you think?",
   ]);
   const [loading, setLoading] = useState(false);
   const [accountName, setAccountName] = useState<string | null>(null);
+  const [loadingBigAccount, setLoadingBigAccount] = useState(false);
+  const [selectedBigAccount, setSelectedBigAccount] = useState<string | null>(
+    null
+  );
 
-  const fetchTweets = async () => {
+  const fetchTweets = async (account: string) => {
     setNewTweet([]);
-    setLoading(true);
     try {
       const { data } = await axios.post("/api/generate-tweets", {
-        accountName,
+        accountName: account,
       });
       setNewTweet(JSON.parse(data.tweet));
       setAccountName(null);
     } catch (err) {
       console.error({ err });
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
     <>
-      <div className="w-full mb-14">
+      <div className="w-full">
         <form
           onSubmit={async (e) => {
             e.preventDefault();
             if (accountName == null) return;
-            await fetchTweets();
+
+            try {
+              setLoading(true);
+              await fetchTweets(accountName);
+            } catch (err) {
+              setLoading(false);
+            }
           }}
           className="flex flex-col items-center justify-center gap-y-3 md:gap-y-0 md:flex-row md:gap-x-3"
         >
@@ -56,10 +84,43 @@ export const MainContent = () => {
             {loading ? (
               <CgSpinnerTwo className="w-5 h-5 animate-spin" />
             ) : (
-              "Create a Tweet"
+              "Create tweets"
             )}
           </button>
         </form>
+      </div>
+      <div className="my-14 divider">OR</div>
+      <div className="flex flex-wrap gap-3 mb-20">
+        {bigAccounts.map((v) => {
+          return (
+            <button
+              key={v.account}
+              className="flex items-center py-2 border rounded-full px-7 gap-x-3 hover:bg-slate-100"
+              onClick={async () => {
+                try {
+                  setSelectedBigAccount(v.account);
+                  setLoadingBigAccount(true);
+                  await fetchTweets(v.account);
+                } catch (err) {
+                } finally {
+                  setLoadingBigAccount(false);
+                }
+              }}
+            >
+              {selectedBigAccount === v.account && loadingBigAccount ? (
+                <CgSpinnerTwo className="w-5 h-5 animate-spin" />
+              ) : (
+                <div className="avatar">
+                  <div className="w-5 rounded-full">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={v.image} loading="lazy" alt={v.name} />
+                  </div>
+                </div>
+              )}
+              {v.name}
+            </button>
+          );
+        })}
       </div>
       {newTweet.map((t) => (
         <TweetContainer tweet={t} key={t} />
