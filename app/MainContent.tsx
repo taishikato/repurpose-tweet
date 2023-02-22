@@ -1,5 +1,3 @@
-"use client";
-
 import axios from "redaxios";
 import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
