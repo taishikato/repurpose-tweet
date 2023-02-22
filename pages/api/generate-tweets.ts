@@ -17,8 +17,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  const accountName = req.body.accountName;
   const params = {
-    screen_name: "taishik_",
+    screen_name: accountName,
     exclude_replies: true,
     include_rts: false,
   };
