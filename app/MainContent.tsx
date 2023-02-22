@@ -27,9 +27,10 @@ const bigAccounts = [
 ];
 
 export const MainContent = () => {
-  const [newTweet, setNewTweet] = useState([
-    "I'm finding that more and more people are taking advantage of subscription plans offered by big tech companies. What do you think?",
-  ]);
+  // const [newTweet, setNewTweet] = useState([
+  //   "I'm finding that more and more people are taking advantage of subscription plans offered by big tech companies. What do you think?",
+  // ]);
+  const [newTweet, setNewTweet] = useState([]);
   const [loading, setLoading] = useState(false);
   const [accountName, setAccountName] = useState<string | null>(null);
   const [loadingBigAccount, setLoadingBigAccount] = useState(false);
@@ -62,6 +63,7 @@ export const MainContent = () => {
               setLoading(true);
               await fetchTweets(accountName);
             } catch (err) {
+            } finally {
               setLoading(false);
             }
           }}
@@ -69,6 +71,7 @@ export const MainContent = () => {
         >
           <input
             type="text"
+            name="accountName"
             placeholder="Your account name without @"
             className="w-full max-w-xs rounded-full input input-bordered"
             onChange={(e) => {
@@ -90,7 +93,7 @@ export const MainContent = () => {
         </form>
       </div>
       <div className="my-14 divider">OR</div>
-      <div className="flex flex-wrap gap-3 mb-20">
+      <div className="flex flex-wrap justify-center gap-3 mb-20">
         {bigAccounts.map((v) => {
           return (
             <button
