@@ -39,7 +39,10 @@ export const MainContent = () => {
       </div>
       {newTweet.map((t) => {
         return (
-          <div className="text-lg p-3 border rounded-xl mb-6" key={t}>
+          <div
+            className="text-lg p-4 border rounded-2xl mb-6 animate-fade-in"
+            key={t}
+          >
             {t}
           </div>
         );
