@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
+import { IoCheckmarkCircle } from "react-icons/io5";
 import axios from "redaxios";
 
 export const TweetContainer = ({ tweet }: { tweet: string }) => {
@@ -58,6 +59,9 @@ export const TweetContainer = ({ tweet }: { tweet: string }) => {
         >
           {tone === "friendly" && loading && (
             <CgSpinnerTwo className="w-4 h-4 animate-spin" />
+          )}
+          {tone === "friendly" && !loading && (
+            <IoCheckmarkCircle className="w-4 h-4" />
           )}{" "}
           Friendly
         </button>
