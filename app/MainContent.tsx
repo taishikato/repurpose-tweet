@@ -31,7 +31,7 @@ export const MainContent = () => {
           className={`px-8 py-4 rounded-full bg-sky-500 text-white font-bold transition-colors hover:bg-sky-600 ${inter.className}`}
         >
           {loading ? (
-            <CgSpinnerTwo className="animate-spin" />
+            <CgSpinnerTwo className="animate-spin w-5 h-5" />
           ) : (
             "Create a Tweet"
           )}
