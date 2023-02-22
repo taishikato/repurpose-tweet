@@ -37,11 +37,11 @@ export const MainContent = () => {
             if (accountName == null) return;
             await fetchTweets();
           }}
-          className="flex items-center justify-center gap-x-3"
+          className="flex flex-col items-center justify-center gap-y-3 md:gap-y-0 md:flex-row md:gap-x-3"
         >
           <input
             type="text"
-            placeholder="Type here"
+            placeholder="Your account name without @"
             className="w-full max-w-xs rounded-full input input-bordered"
             onChange={(e) => {
               setAccountName(e.target.value);
@@ -51,7 +51,7 @@ export const MainContent = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`px-8 py-3 rounded-full bg-sky-500 text-white font-semibold transition-colors hover:bg-sky-600`}
+            className={`px-8 py-3 rounded-full bg-sky-500 text-white font-semibold transition-colors hover:bg-sky-600 w-full md:w-auto max-w-xs`}
           >
             {loading ? (
               <CgSpinnerTwo className="w-5 h-5 animate-spin" />

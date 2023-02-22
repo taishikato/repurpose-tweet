@@ -4,11 +4,15 @@ import { MainContent } from "./MainContent";
 export default function Home() {
   return (
     <main
-      className={`mt-44 mb-20 w-full max-w-[680px] m-auto ${poppins.className} px-2 md:px-0`}
+      className={`my-36 w-full max-w-[680px] m-auto ${poppins.className} px-2 md:px-0`}
     >
-      <h1 className="text-5xl font-bold tracking-wide text-center md:text-7xl mb-14">
+      <h1 className="mb-10 text-5xl font-semibold text-center md:text-7xl">
         Repurpose your recent tweets
       </h1>
+      <h2 className="mb-20 text-xl font-medium text-center md:text-2xl">
+        Get inspired by anyone&apos;s recent tweets and
+        <br /> use them for yourself.
+      </h2>
       <MainContent />
     </main>
   );

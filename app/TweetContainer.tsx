@@ -37,7 +37,7 @@ export const TweetContainer = ({ tweet }: { tweet: string }) => {
     >
       <span className="block mb-5">{tweet}</span>
       <div className="divider" />
-      <div className="flex flex-wrap gap-x-3">
+      <div className="flex flex-wrap gap-3">
         <button
           disabled={loading}
           className="bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full flex gap-x-1 items-center"
