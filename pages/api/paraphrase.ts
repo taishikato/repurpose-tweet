@@ -6,9 +6,10 @@ export const config = {
 
 const toneArray = [
   "friendly",
-  "academic",
+  "hook",
+  "stoner",
+  "compress",
   "persuasive",
-  "native-like",
 ] as const;
 
 const handler = async (req: NextRequest): Promise<Response> => {
@@ -25,12 +26,16 @@ const handler = async (req: NextRequest): Promise<Response> => {
   Tweet: ${tweet}
   Rephrase:`;
 
-  if (mode === "native-like") {
-    prompt = `Rephrase the tweet like a native English speaker.
+  if (mode === "compress") {
+    prompt = `Please summarize the following tweet. Everyone should be able to easily understand it.
     Tweet: ${tweet}
     Rephrase:`;
-  } else if (mode === "academic") {
-    prompt = `Rephrase the tweet in terms appropriate to the academic context.
+  } else if (mode === "hook") {
+    prompt = `Please rephrase the following tweets to make them more attention-grabbing.
+    Tweet: ${tweet}
+    Rephrase:`;
+  } else if (mode === "stoner") {
+    prompt = `Please rewrite the following tweet to make it sound like a person smoking pot and getting high.
     Tweet: ${tweet}
     Rephrase:`;
   } else if (mode === "persuasive") {
