@@ -13,7 +13,7 @@ export const MainContent = () => {
     setNewTweet([]);
     setLoading(true);
     try {
-      const { data } = await axios.get("/api/hello");
+      const { data } = await axios.get("/api/generate-tweets");
       setNewTweet(JSON.parse(data.tweet));
     } catch (err) {
       console.error({ err });
