@@ -15,9 +15,9 @@ export const Login = () => {
 
   return (
     <div className="mb-14">
-      <div className="flex items-center justify-center gap-x-3">
+      <div className="flex flex-col items-center justify-center gap-x-3 md:flex-row">
         <button
-          className="flex items-center py-3 transition-colors bg-white border rounded-full px-7 gap-x-2 hover:bg-slate-100"
+          className="flex items-center py-3 mb-3 transition-colors bg-white border rounded-full px-7 gap-x-2 hover:bg-slate-100 md:mb-0"
           onClick={async () => {
             event("click-login-btn");
             await login();
@@ -35,7 +35,6 @@ export const Login = () => {
         >
           Why do I need to login?
         </button>
-        {/* <button onClick={logout}>Logout</button> */}
       </div>
       {showDesc && (
         <div className="mt-3 animate-fade-in">

@@ -76,7 +76,7 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
         <div className="mb-5 text-xl font-medium text-center">
           Use your Twitter account{" "}
           <span className="text-sm">
-            (You can use anyone&apos;s tweets actually 😅)
+            (You can use anyone&apos;s account actually 😅)
           </span>
         </div>
         <form
@@ -109,7 +109,7 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
           <button
             type="submit"
             disabled={loading}
-            className={`px-8 py-3 rounded-full bg-sky-500 text-white font-semibold transition-colors hover:bg-sky-600 w-full md:w-auto max-w-xs`}
+            className={`flex md:inline justify-center px-8 py-3 rounded-full bg-sky-500 text-white font-semibold transition-colors hover:bg-sky-600 w-full md:w-auto max-w-xs`}
           >
             {loading ? (
               <CgSpinnerTwo className="w-5 h-5 animate-spin" />
@@ -119,11 +119,11 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
           </button>
         </form>
       </div>
-      <div className="my-14 divider">OR</div>
+      <div className="my-9 divider">OR</div>
       <div className="mb-5 text-xl font-medium text-center">
         Try big accounts
       </div>
-      <div className="flex flex-wrap justify-center gap-3 mb-20">
+      <div className="flex flex-wrap justify-center gap-3 mb-10 md:mb-20">
         {bigAccounts.map((v) => {
           return (
             <button
