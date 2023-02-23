@@ -46,7 +46,7 @@ export default function Home() {
         <main
           className={`pt-12 md:pt-24 pb-36 w-full max-w-[680px] m-auto ${poppins.className} px-4 md:px-0`}
         >
-          <h1 className="mb-10 text-5xl font-bold text-center md:text-7xl text-slate-800">
+          <h1 className="mb-10 text-5xl font-bold text-center md:leading-[1.05] md:text-7xl text-slate-800">
             Repurpose your/anyone&apos;s recent tweets
           </h1>
           <h2 className="text-xl font-medium text-center mb-14 md:text-2xl text-slate-500">
