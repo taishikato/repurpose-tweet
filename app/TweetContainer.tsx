@@ -1,3 +1,4 @@
+import { event } from "nextjs-google-analytics";
 import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { IoCheckmarkCircle } from "react-icons/io5";
@@ -15,6 +16,7 @@ export const TweetContainer = ({ tweet }: { tweet: string }) => {
     tweet: string;
     mode: string;
   }) => {
+    event(`click-${mode}-btn`);
     setParaphrasedTweet(null);
     setLoading(true);
     setTone(null);

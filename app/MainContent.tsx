@@ -1,10 +1,9 @@
-"use client";
-
 import axios from "redaxios";
 import { useEffect, useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { TweetContainer } from "./TweetContainer";
 import { Alert } from "./Alert";
+import { event } from "nextjs-google-analytics";
 
 const bigAccounts = [
   {
@@ -80,6 +79,8 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
         <form
           onSubmit={async (e) => {
             e.preventDefault();
+            event("click-create-tweet-btn");
+
             if (accountName == null) return;
 
             try {
@@ -127,6 +128,7 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
               className="flex items-center py-2 transition-colors border rounded-full px-7 gap-x-3 hover:bg-slate-100"
               onClick={async () => {
                 try {
+                  event(`click-${v.account}-btn`);
                   setSelectedBigAccount(v.account);
                   setLoadingBigAccount(true);
                   setShowAlert(false);

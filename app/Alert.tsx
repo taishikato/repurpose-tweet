@@ -1,8 +1,15 @@
+import { event } from "nextjs-google-analytics";
+import { useEffect } from "react";
+
 export const Alert = ({
   message = "An error occurred. Please try again later.",
 }: {
   message?: string;
 }) => {
+  useEffect(() => {
+    event("show-alert");
+  }, []);
+
   return (
     <div className="mb-10 rounded-full alert alert-error">
       <div>

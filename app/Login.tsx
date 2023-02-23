@@ -1,6 +1,5 @@
-"use client";
-
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { event } from "nextjs-google-analytics";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
@@ -14,23 +13,25 @@ export const Login = () => {
     });
   };
 
-  const logout = async () => {
-    return supabaseClient.auth.signOut();
-  };
-
   return (
     <div className="mb-14">
       <div className="flex items-center justify-center gap-x-3">
         <button
           className="flex items-center py-3 transition-colors bg-white border rounded-full px-7 gap-x-2 hover:bg-slate-100"
-          onClick={login}
+          onClick={async () => {
+            event("click-login-btn");
+            await login();
+          }}
         >
           <FcGoogle className="w-5 h-5" />
           Login with Google
         </button>
         <button
           className="text-sm hover:underline"
-          onClick={() => setShowDesc((prev) => !prev)}
+          onClick={() => {
+            event("click-show-login-desc-btn");
+            setShowDesc((prev) => !prev);
+          }}
         >
           Why do I need to login?
         </button>
