@@ -8,6 +8,7 @@ import { SessionContextProvider } from "@supabase/auth-helpers-react";
 import { Login } from "./Login";
 import { useEffect, useState } from "react";
 import { Header } from "./Header";
+import Script from "next/script";
 
 export default function Home() {
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
@@ -26,6 +27,19 @@ export default function Home() {
     <>
       <GoogleAnalytics
         trackPageViews={process.env.NEXT_PUBLIC_PROD === "true"}
+      />
+      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+      <script
+        data-name="BMC-Widget"
+        data-cfasync="false"
+        src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+        data-id="taishik"
+        data-description="Support me on Buy me a coffee!"
+        data-message="Thank you for visiting!"
+        data-color="#FF813F"
+        data-position="Right"
+        data-x_margin="18"
+        data-y_margin="18"
       />
       <SessionContextProvider supabaseClient={supabaseClient}>
         <Header isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
