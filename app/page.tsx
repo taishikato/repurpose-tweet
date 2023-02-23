@@ -40,7 +40,7 @@ export default function Home() {
             <br /> use them for yourself.
           </h2>
           {!isLoggedin && <Login />}
-          <MainContent />
+          <MainContent isLoggedin={isLoggedin} />
         </main>
       </SessionContextProvider>
     </>

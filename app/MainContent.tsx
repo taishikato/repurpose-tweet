@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "redaxios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { TweetContainer } from "./TweetContainer";
 import { Alert } from "./Alert";
@@ -27,7 +27,7 @@ const bigAccounts = [
   },
 ];
 
-export const MainContent = () => {
+export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
   // const [newTweet, setNewTweet] = useState([
   //   "I'm finding that more and more people are taking advantage of subscription plans offered by big tech companies. What do you think?",
   // ]);
@@ -43,6 +43,7 @@ export const MainContent = () => {
   const fetchTweets = async (account: string) => {
     setAuthAlert(false);
     setNewTweet([]);
+
     try {
       const { data } = await axios.post("/api/protected/generate-tweets", {
         accountName: account,
@@ -55,6 +56,10 @@ export const MainContent = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (!isLoggedin) setNewTweet([]);
+  }, [isLoggedin]);
 
   return (
     <div className="mt-24">
