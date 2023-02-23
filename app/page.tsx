@@ -44,7 +44,7 @@ export default function Home() {
       <SessionContextProvider supabaseClient={supabaseClient}>
         <Header isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
         <main
-          className={`pt-24 pb-36 w-full max-w-[680px] m-auto ${poppins.className} px-2 md:px-0`}
+          className={`pt-12 md:pt-24 pb-36 w-full max-w-[680px] m-auto ${poppins.className} px-2 md:px-0`}
         >
           <h1 className="mb-10 text-5xl font-bold text-center md:text-7xl text-slate-800">
             Repurpose your recent tweets
