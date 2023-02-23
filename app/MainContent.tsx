@@ -26,6 +26,11 @@ const bigAccounts = [
   },
 ];
 
+const scroll = () => {
+  const section = document.querySelector("#tweet-result");
+  section?.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
 export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
   // const [newTweet, setNewTweet] = useState([
   //   "I'm finding that more and more people are taking advantage of subscription plans offered by big tech companies. What do you think?",
@@ -51,6 +56,7 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
       });
       setNewTweet(JSON.parse(data.tweet));
       setAccountName(null);
+      scroll();
     } catch (err) {
       console.log({ err });
       if ((err as any).status === 401) {
@@ -162,13 +168,15 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
         })}
       </div>
       {showAlertTweetContainer && <Alert />}
-      {newTweet.map((t) => (
-        <TweetContainer
-          setShowAlertTweetContainer={setShowAlertTweetContainer}
-          tweet={t}
-          key={t}
-        />
-      ))}
+      <div id="tweet-result">
+        {newTweet.map((t) => (
+          <TweetContainer
+            setShowAlertTweetContainer={setShowAlertTweetContainer}
+            tweet={t}
+            key={t}
+          />
+        ))}
+      </div>
     </div>
   );
 };
