@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "redaxios";
 import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
@@ -25,10 +27,10 @@ const bigAccounts = [
 ];
 
 export const MainContent = () => {
-  // const [newTweet, setNewTweet] = useState([
-  //   "I'm finding that more and more people are taking advantage of subscription plans offered by big tech companies. What do you think?",
-  // ]);
-  const [newTweet, setNewTweet] = useState([]);
+  const [newTweet, setNewTweet] = useState([
+    "I'm finding that more and more people are taking advantage of subscription plans offered by big tech companies. What do you think?",
+  ]);
+  // const [newTweet, setNewTweet] = useState([]);
   const [loading, setLoading] = useState(false);
   const [accountName, setAccountName] = useState<string | null>(null);
   const [loadingBigAccount, setLoadingBigAccount] = useState(false);
@@ -96,7 +98,7 @@ export const MainContent = () => {
           return (
             <button
               key={v.account}
-              className="flex items-center py-2 border rounded-full px-7 gap-x-3 hover:bg-slate-100"
+              className="flex items-center py-2 transition-colors border rounded-full px-7 gap-x-3 hover:bg-slate-100"
               onClick={async () => {
                 try {
                   setSelectedBigAccount(v.account);
