@@ -74,7 +74,10 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
       {showAlert && <Alert message={errorMessage} />}
       <div className="w-full">
         <div className="mb-5 text-xl font-medium text-center">
-          Use someone&apos;s tweet
+          Use your tweets{" "}
+          <span className="text-sm">
+            (You can use anyone&apos;s tweets actually 😅)
+          </span>
         </div>
         <form
           onSubmit={async (e) => {
@@ -118,7 +121,7 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
       </div>
       <div className="my-14 divider">OR</div>
       <div className="mb-5 text-xl font-medium text-center">
-        Use big accounts&apos; tweets like below
+        Use big accounts&apos; tweets
       </div>
       <div className="flex flex-wrap justify-center gap-3 mb-20">
         {bigAccounts.map((v) => {
