@@ -1,5 +1,6 @@
 import { event } from "nextjs-google-analytics";
 import { useEffect } from "react";
+import { IoCloseCircle } from "react-icons/io5";
 
 export const Alert = ({
   message = "An error occurred. Please try again later.",
@@ -11,23 +12,12 @@ export const Alert = ({
   }, []);
 
   return (
-    <div className="mb-10 rounded-full alert alert-error">
-      <div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="flex-shrink-0 w-6 h-6 stroke-current"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-        <span>{message}</span>
-      </div>
+    <div
+      className="flex items-center p-4 mb-10 text-sm text-red-800 bg-red-200 rounded-full gap-x-3"
+      role="alert"
+    >
+      <IoCloseCircle className="w-5 h-5" />
+      <span>{message}</span>
     </div>
   );
 };

@@ -38,7 +38,8 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
     null
   );
   const [showAlert, setShowAlert] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string | undefined>("");
+  const [showAlertTweetContainer, setShowAlertTweetContainer] = useState(false);
 
   const fetchTweets = async (account: string) => {
     setShowAlert(false);
@@ -51,16 +52,16 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
       setNewTweet(JSON.parse(data.tweet));
       setAccountName(null);
     } catch (err) {
+      console.log({ err });
       if ((err as any).status === 401) {
         setShowAlert(true);
         setErrorMessage("You need to login.");
-      }
-
-      console.log({ err });
-
-      if ((err as any).status === 400 && (err as any).data.code === 34) {
+      } else if ((err as any).status === 400 && (err as any).data.code === 34) {
         setShowAlert(true);
         setErrorMessage((err as any).data.detail);
+      } else {
+        setShowAlert(true);
+        setErrorMessage(undefined);
       }
     }
   };
@@ -160,8 +161,13 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
           );
         })}
       </div>
+      {showAlertTweetContainer && <Alert />}
       {newTweet.map((t) => (
-        <TweetContainer tweet={t} key={t} />
+        <TweetContainer
+          setShowAlertTweetContainer={setShowAlertTweetContainer}
+          tweet={t}
+          key={t}
+        />
       ))}
     </div>
   );
