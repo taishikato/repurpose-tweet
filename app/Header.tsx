@@ -16,7 +16,7 @@ export const Header = ({
   };
 
   return (
-    <header className={`px-2 md:px-0 ${poppins.className}`}>
+    <header className={`px-4 md:px-0 ${poppins.className}`}>
       <div className="h-[50px] max-w-[680px] w-full m-auto flex items-center flex-row-reverse">
         {isLoggedin && (
           <button
