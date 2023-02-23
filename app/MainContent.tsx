@@ -4,6 +4,7 @@ import axios from "redaxios";
 import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { TweetContainer } from "./TweetContainer";
+import { Alert } from "./Alert";
 
 const bigAccounts = [
   {
@@ -37,23 +38,31 @@ export const MainContent = () => {
   const [selectedBigAccount, setSelectedBigAccount] = useState<string | null>(
     null
   );
+  const [authAlert, setAuthAlert] = useState(false);
 
   const fetchTweets = async (account: string) => {
+    setAuthAlert(false);
     setNewTweet([]);
     try {
-      const { data } = await axios.post("/api/generate-tweets", {
+      const { data } = await axios.post("/api/protected/generate-tweets", {
         accountName: account,
       });
       setNewTweet(JSON.parse(data.tweet));
       setAccountName(null);
     } catch (err) {
-      console.error({ err });
+      if ((err as any).status === 401) {
+        setAuthAlert(true);
+      }
     }
   };
 
   return (
-    <>
+    <div className="mt-24">
+      {authAlert && <Alert message="You need to login." />}
       <div className="w-full">
+        <div className="mb-5 text-xl font-medium text-center">
+          Use someone&apos;s tweet
+        </div>
         <form
           onSubmit={async (e) => {
             e.preventDefault();
@@ -93,6 +102,9 @@ export const MainContent = () => {
         </form>
       </div>
       <div className="my-14 divider">OR</div>
+      <div className="mb-5 text-xl font-medium text-center">
+        Use big accounts&apos; tweets like below
+      </div>
       <div className="flex flex-wrap justify-center gap-3 mb-20">
         {bigAccounts.map((v) => {
           return (
@@ -103,8 +115,12 @@ export const MainContent = () => {
                 try {
                   setSelectedBigAccount(v.account);
                   setLoadingBigAccount(true);
+                  setAuthAlert(false);
                   await fetchTweets(v.account);
                 } catch (err) {
+                  if ((err as any).status === 401) {
+                    setAuthAlert(true);
+                  }
                 } finally {
                   setLoadingBigAccount(false);
                 }
@@ -128,6 +144,6 @@ export const MainContent = () => {
       {newTweet.map((t) => (
         <TweetContainer tweet={t} key={t} />
       ))}
-    </>
+    </div>
   );
 };

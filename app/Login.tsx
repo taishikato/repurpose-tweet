@@ -39,8 +39,8 @@ export const Login = () => {
       {showDesc && (
         <div className="mt-3 animate-fade-in">
           The reason is to prevent API abuse.
-          <br />I have an experience that someone called my API A LOT like crazy
-          , thus I had to pay money to OpenAI for that.
+          <br />I have an experience that someone called my API A LOT like
+          crazy, thus I had to pay money to OpenAI for that.
         </div>
       )}
     </div>
