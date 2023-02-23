@@ -1,6 +1,10 @@
-export const Alert = ({ message }: { message?: string }) => {
+export const Alert = ({
+  message = "An error occurred. Please try again later.",
+}: {
+  message?: string;
+}) => {
   return (
-    <div className="mb-10 shadow-lg alert alert-error">
+    <div className="mb-10 rounded-full alert alert-error">
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"

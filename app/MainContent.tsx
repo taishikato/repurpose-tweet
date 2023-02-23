@@ -38,10 +38,11 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
   const [selectedBigAccount, setSelectedBigAccount] = useState<string | null>(
     null
   );
-  const [authAlert, setAuthAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const fetchTweets = async (account: string) => {
-    setAuthAlert(false);
+    setShowAlert(false);
     setNewTweet([]);
 
     try {
@@ -52,7 +53,15 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
       setAccountName(null);
     } catch (err) {
       if ((err as any).status === 401) {
-        setAuthAlert(true);
+        setShowAlert(true);
+        setErrorMessage("You need to login.");
+      }
+
+      console.log({ err });
+
+      if ((err as any).status === 400 && (err as any).data.code === 34) {
+        setShowAlert(true);
+        setErrorMessage((err as any).data.detail);
       }
     }
   };
@@ -63,7 +72,7 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
 
   return (
     <div className="mt-24">
-      {authAlert && <Alert message="You need to login." />}
+      {showAlert && <Alert message={errorMessage} />}
       <div className="w-full">
         <div className="mb-5 text-xl font-medium text-center">
           Use someone&apos;s tweet
@@ -120,11 +129,11 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
                 try {
                   setSelectedBigAccount(v.account);
                   setLoadingBigAccount(true);
-                  setAuthAlert(false);
+                  setShowAlert(false);
                   await fetchTweets(v.account);
                 } catch (err) {
                   if ((err as any).status === 401) {
-                    setAuthAlert(true);
+                    setShowAlert(true);
                   }
                 } finally {
                   setLoadingBigAccount(false);

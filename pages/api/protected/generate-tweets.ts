@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import Twitter from "twitter";
+import Twitter, { ResponseData } from "twitter";
 
 const client = new Twitter({
   consumer_key: process.env.CUSTOMER_KEY as string,
@@ -15,7 +15,7 @@ type Data = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
   const accountName = req.body.accountName;
   const params = {
@@ -23,7 +23,24 @@ export default async function handler(
     exclude_replies: true,
     include_rts: false,
   };
-  const data = await client.get("statuses/user_timeline", params);
+
+  let data = [] as ResponseData[];
+
+  try {
+    data = (await client.get(
+      "statuses/user_timeline",
+      params
+    )) as ResponseData[];
+  } catch (err) {
+    console.error({ err });
+    if ((err as any)[0].code === 34) {
+      return res
+        .status(400)
+        .json({ code: 34, detail: "This account does not exist." });
+    }
+
+    return res.status(500).json({ detail: "An error occurred." });
+  }
 
   const tweets = data.map((d: Twitter.ResponseData) => d.text);
 
