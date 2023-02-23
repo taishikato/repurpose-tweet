@@ -8,7 +8,7 @@ import { SessionContextProvider } from "@supabase/auth-helpers-react";
 import { Login } from "./Login";
 import { useEffect, useState } from "react";
 import { Header } from "./Header";
-import Script from "next/script";
+import { Footer } from "./Footer";
 
 export default function Home() {
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
@@ -44,7 +44,7 @@ export default function Home() {
       <SessionContextProvider supabaseClient={supabaseClient}>
         <Header isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
         <main
-          className={`py-24 w-full max-w-[680px] m-auto ${poppins.className} px-2 md:px-0`}
+          className={`pt-24 pb-36 w-full max-w-[680px] m-auto ${poppins.className} px-2 md:px-0`}
         >
           <h1 className="mb-10 text-5xl font-bold text-center md:text-7xl text-slate-800">
             Repurpose your recent tweets
@@ -56,6 +56,7 @@ export default function Home() {
           {!isLoggedin && <Login />}
           <MainContent isLoggedin={isLoggedin} />
         </main>
+        <Footer />
       </SessionContextProvider>
     </>
   );
