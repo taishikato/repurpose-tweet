@@ -47,11 +47,11 @@ export default function Home() {
           className={`pt-12 md:pt-24 pb-36 w-full max-w-[680px] m-auto ${poppins.className} px-2 md:px-0`}
         >
           <h1 className="mb-10 text-5xl font-bold text-center md:text-7xl text-slate-800">
-            Repurpose your recent tweets
+            Repurpose your/anyone&apos;s recent tweets
           </h1>
           <h2 className="text-xl font-medium text-center mb-14 md:text-2xl text-slate-500">
-            Get inspired by anyone&apos;s recent tweets and
-            <br /> use them for yourself.
+            Get inspired by anyone&apos;s recent tweets and use them for
+            yourself.
           </h2>
           {!isLoggedin && <Login />}
           <MainContent isLoggedin={isLoggedin} />
