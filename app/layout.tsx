@@ -5,7 +5,7 @@ const title = "Repurpose Tweet";
 const description =
   "Effortlessly generate fresh Twitter content with Tweet Repurpose that repurposes your old tweets.";
 const image =
-  "https://hndfjivgskjpoyxfgmyu.supabase.co/storage/v1/object/public/public/ogp";
+  "https://hndfjivgskjpoyxfgmyu.supabase.co/storage/v1/object/public/public/ogp.png";
 const url = "https://repurpose-tweet.vercel.app";
 
 export const metadata: Metadata = {
