@@ -1,38 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Repurpose Tweet
 
-## Getting Started
+<img src="https://user-images.githubusercontent.com/980588/221081201-1df655df-aef5-4d38-886d-a51629a188f7.gif" width="200" />
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Repurposing your tweets is one of the best to way to avoid running out of ideas and grow your Twitter account according [Engagement Builder](https://engagementbuilder.com/growth-academy/get-your-first-1000-twitter-followers/) 😏
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Here it is! You can use Repurpose Tweet to
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* generate tweets form your recent tweets
+* rewrite them with AI powered feature!
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Testing Next.js v13
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+One one the reason why I built Repurpose Tweet is to test some new Next 13 features such as
+* app dir
+* metadata
+* Route handler
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+There is a problem and I made an issue 😄
 
-## Learn More
+[Throws `Illegal invocation` when I called the edge route handler from the client · Issue #46337 · vercel/next.js](https://github.com/vercel/next.js/issues/46337)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+I am using pages/api for APIs for now, so the app works fine on [repurpose-tweet.vercel.app](https://repurpose-tweet.vercel.app/) 👍
