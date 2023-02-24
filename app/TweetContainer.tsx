@@ -28,14 +28,16 @@ export const TweetContainer = ({
     setShowAlertTweetContainer(false);
     setTone(mode);
     try {
-      const { data }: { data: { result: string } } = await axios.post(
+      const {
+        data: { result },
+      }: { data: { result: string } } = await axios.post(
         "/protected/paraphrase",
         {
           tweet,
           mode,
         }
       );
-      setParaphrasedTweet(data.result);
+      setParaphrasedTweet(result);
     } catch (err) {
       setShowAlertTweetContainer(true);
     } finally {
