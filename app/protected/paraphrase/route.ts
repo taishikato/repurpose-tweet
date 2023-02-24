@@ -17,8 +17,6 @@ export const POST = async (req: Request) => {
     mode: typeof toneArray[number];
   };
 
-  console.log("here 1");
-
   tweet = tweet.replace(/\n/g, " ");
 
   if (!toneArray.includes(mode)) mode = "friendly";
@@ -45,7 +43,6 @@ export const POST = async (req: Request) => {
     Rephrase:`;
   }
 
-  console.log("here 2");
   try {
     const payload = {
       model: "text-davinci-003",
@@ -71,13 +68,11 @@ export const POST = async (req: Request) => {
           throw new Error(err.message);
         });
 
-      console.log("here 3");
       return new Response(
         JSON.stringify({ result: json.choices[0].text ?? "" }),
         { status: 200 }
       );
     } catch (err) {
-      console.log("here 4");
       return new Response(
         JSON.stringify({
           status: "error",
@@ -87,7 +82,6 @@ export const POST = async (req: Request) => {
       );
     }
   } catch (err) {
-    console.log("here 5");
     return new Response(
       JSON.stringify({ status: "error", result: (err as Error).message }),
       { status: 500 }
