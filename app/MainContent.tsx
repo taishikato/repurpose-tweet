@@ -51,7 +51,7 @@ export const MainContent = ({ isLoggedin }: { isLoggedin: boolean }) => {
     setNewTweet([]);
 
     try {
-      const { data } = await axios.post("/api/protected/generate-tweets", {
+      const { data } = await axios.post("/protected/generate-tweets", {
         accountName: account,
       });
       setNewTweet(JSON.parse(data.tweet));

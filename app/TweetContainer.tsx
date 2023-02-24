@@ -29,7 +29,7 @@ export const TweetContainer = ({
     setTone(mode);
     try {
       const { data }: { data: { result: string } } = await axios.post(
-        "/api/protected/paraphrase",
+        "/protected/paraphrase",
         {
           tweet,
           mode,

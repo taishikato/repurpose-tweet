@@ -1,5 +1,4 @@
-import { NextRequest } from "next/server";
-
+// Edge runtime
 export const config = {
   runtime: "edge",
 };
@@ -12,7 +11,7 @@ const toneArray = [
   "persuasive",
 ] as const;
 
-const handler = async (req: NextRequest): Promise<Response> => {
+export const POST = async (req: Request) => {
   let { tweet, mode } = (await req.json()) as {
     tweet: string;
     mode: typeof toneArray[number];
@@ -95,5 +94,3 @@ const handler = async (req: NextRequest): Promise<Response> => {
     );
   }
 };
-
-export default handler;

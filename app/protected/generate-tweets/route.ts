@@ -1,5 +1,4 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
+// Node.js runtime
 import Twitter, { ResponseData } from "twitter";
 
 const client = new Twitter({
@@ -9,15 +8,11 @@ const client = new Twitter({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET as string,
 });
 
-type Data = {
-  tweet: any;
-};
+export async function POST(req: Request) {
+  const { accountName } = (await req.json()) as {
+    accountName: string;
+  };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  const accountName = req.body.accountName;
   const params = {
     screen_name: accountName,
     exclude_replies: true,
@@ -34,12 +29,17 @@ export default async function handler(
   } catch (err) {
     console.error({ err });
     if ((err as any)[0].code === 34) {
-      return res
-        .status(400)
-        .json({ code: 34, detail: "This account does not exist." });
+      return new Response(
+        JSON.stringify({ code: 34, detail: "This account does not exist." }),
+        {
+          status: 400,
+        }
+      );
     }
 
-    return res.status(500).json({ detail: "An error occurred." });
+    return new Response(JSON.stringify({ detail: "An error occurred." }), {
+      status: 500,
+    });
   }
 
   const tweets = data.map((d: Twitter.ResponseData) => d.text);
@@ -71,5 +71,7 @@ export default async function handler(
       throw new Error(err.message);
     });
 
-  res.status(200).json({ tweet: json.choices[0].text });
+  return new Response(JSON.stringify({ tweet: json.choices[0].text }), {
+    status: 200,
+  });
 }
