@@ -18,8 +18,6 @@ const handler = async (req: NextRequest): Promise<Response> => {
     mode: typeof toneArray[number];
   };
 
-  console.log("here 1");
-
   tweet = tweet.replace(/\n/g, " ");
 
   if (!toneArray.includes(mode)) mode = "friendly";
@@ -46,7 +44,6 @@ const handler = async (req: NextRequest): Promise<Response> => {
     Rephrase:`;
   }
 
-  console.log("here 2");
   try {
     const payload = {
       model: "text-davinci-003",
@@ -72,13 +69,11 @@ const handler = async (req: NextRequest): Promise<Response> => {
           throw new Error(err.message);
         });
 
-      console.log("here 3");
       return new Response(
         JSON.stringify({ result: json.choices[0].text ?? "" }),
         { status: 200 }
       );
     } catch (err) {
-      console.log("here 4");
       return new Response(
         JSON.stringify({
           status: "error",
@@ -88,7 +83,6 @@ const handler = async (req: NextRequest): Promise<Response> => {
       );
     }
   } catch (err) {
-    console.log("here 5");
     return new Response(
       JSON.stringify({ status: "error", result: (err as Error).message }),
       { status: 500 }
