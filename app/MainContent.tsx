@@ -13,16 +13,16 @@ const bigAccounts = [
     account: "elonmusk",
   },
   {
-    name: "Paul Graham",
+    name: "Cardi B",
     image:
-      "https://hndfjivgskjpoyxfgmyu.supabase.co/storage/v1/object/public/public/pg",
-    account: "paulg",
+      "https://hndfjivgskjpoyxfgmyu.supabase.co/storage/v1/object/public/public/cardib",
+    account: "iamcardib",
   },
   {
-    name: "Melinda French Gates",
+    name: "Justin Welsh",
     image:
-      "https://hndfjivgskjpoyxfgmyu.supabase.co/storage/v1/object/public/public/mg",
-    account: "melindagates",
+      "https://hndfjivgskjpoyxfgmyu.supabase.co/storage/v1/object/public/public/jw",
+    account: "thejustinwelsh",
   },
 ];
 
