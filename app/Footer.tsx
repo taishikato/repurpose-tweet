@@ -1,5 +1,6 @@
 import { poppins } from "@/fonts";
 import { IoLogoGithub } from "react-icons/io5";
+import { SiSubstack } from "react-icons/si";
 
 export const Footer = () => {
   return (
@@ -18,7 +19,6 @@ export const Footer = () => {
             @taishik_
           </a>
         </small>
-        {/* <div className="flex items-center ml-5 text-xs text-slate-500"> */}
         <a
           href="https://github.com/taishikato/repurpose-tweet"
           target="_blank"
@@ -27,7 +27,14 @@ export const Footer = () => {
           <IoLogoGithub className="w-4 h-4 mr-1" />
           Source code
         </a>
-        {/* </div> */}
+        <a
+          href="https://taishi.substack.com/"
+          target="_blank"
+          className="flex items-center p-2 text-xs font-medium text-white transition-colors bg-orange-500 rounded-md ml-7 hover:bg-orange-600"
+        >
+          <SiSubstack className="w-3 h-3 mr-1" />
+          On SubStack
+        </a>
       </div>
     </footer>
   );
