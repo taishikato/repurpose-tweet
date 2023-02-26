@@ -5,20 +5,9 @@ import { SiSubstack } from "react-icons/si";
 export const Footer = () => {
   return (
     <footer
-      className={`flex justify-center py-8 border-t ${poppins.className}`}
+      className={`flex justify-center py-8 border-t flex-col items-center ${poppins.className}`}
     >
-      <div className="flex items-center">
-        <small className="text-xs text-slate-500">
-          Made by{" "}
-          <a
-            href="https://twitter.com/taishik_"
-            target="_blank"
-            rel="noreferrer"
-            className="hover:underline"
-          >
-            @taishik_
-          </a>
-        </small>
+      <div className="flex items-center mb-7">
         <a
           href="https://github.com/taishikato/repurpose-tweet"
           target="_blank"
@@ -36,6 +25,17 @@ export const Footer = () => {
           On SubStack
         </a>
       </div>
+      <small className="text-xs text-slate-500">
+        Made by{" "}
+        <a
+          href="https://twitter.com/taishik_"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:underline"
+        >
+          @taishik_
+        </a>
+      </small>
     </footer>
   );
 };
